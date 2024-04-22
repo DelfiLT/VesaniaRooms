@@ -6,6 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/RotationTest1.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.adaptiveperformance.google.android.provider_settings: {fileID: 11400000,
+      guid: e8f06e55c09451b45a2ef3826e8fcdf3, type: 2}
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 7530904c75b1d15478499d0fbf2d38df,
+      type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000,
+      guid: 621fca283ce8b3947b4ac01a82c2919b, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
+      guid: 2b63c94046f054ef6af1a0ffdf531938, type: 2}
