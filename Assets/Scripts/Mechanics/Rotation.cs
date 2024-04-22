@@ -5,16 +5,15 @@ using UnityEngine.InputSystem.Controls;
 
 public class Rotation : MonoBehaviour
 {
-    public float currentYAngle = 45;
-
     public void RotateRoomRight()
     {
-        currentYAngle = currentYAngle - 180;
-        transform.Rotate(Vector3.down, transform.eulerAngles.y + currentYAngle);
+        transform.LeanRotateY(transform.eulerAngles.y + 180f, 1)
+            .setEaseInOutQuad();
     }
 
     public void RotateRoomLeft()
     {
-
+        transform.LeanRotateY(transform.eulerAngles.y - 180f, 1)
+            .setEaseInOutQuad();
     }
 }

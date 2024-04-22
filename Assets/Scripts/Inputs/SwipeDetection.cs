@@ -69,6 +69,7 @@ public class SwipeDetection : MonoBehaviour
         }
         else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
         {
+            Debug.Log("Rotate left");
             rotation.RotateRoomLeft();
         }
     }
