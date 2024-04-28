@@ -10,8 +10,6 @@ public class SwipeDetection : MonoBehaviour
     private float maxTime = 1f;
     [SerializeField, Range(0,1)]
     private float directionThreshold = .9f;
-    [SerializeField]
-    private GameObject trail;
 
     [Header("Mechanics")]
     [SerializeField]
@@ -32,19 +30,12 @@ public class SwipeDetection : MonoBehaviour
 
     private void SwipeStart(Vector2 position, float time)
     {
-        trail.SetActive(true);
-        trail.transform.position = position;
-        trailCoroutine = StartCoroutine(Trail());
-
         startPosition = position;
         startTime = time;
     }
 
     private void SwipeEnd(Vector2 position, float time)
     {
-        trail.SetActive(false);
-        StopCoroutine(trailCoroutine);
-
         endPosition = position;
         endTime = time;
         DetectSwipe();
@@ -64,22 +55,11 @@ public class SwipeDetection : MonoBehaviour
     {
         if(Vector2.Dot(Vector2.right, direction) > directionThreshold) 
         {
-            Debug.Log("Rotate right");
             rotation.RotateRoomRight();
         }
         else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
         {
-            Debug.Log("Rotate left");
             rotation.RotateRoomLeft();
-        }
-    }
-
-    private IEnumerator Trail()
-    {
-        while(true)
-        {
-            trail.transform.position = inputManager.PrimaryPosition();
-            yield return null;
         }
     }
 
