@@ -10,7 +10,7 @@ public class SwipeDetection : MonoBehaviour
     private float maxTime = 1f;
     [SerializeField, Range(0,1)]
     private float directionThreshold = .9f;
-
+    
     [Header("Mechanics")]
     [SerializeField]
     private Rotation rotation;
@@ -21,7 +21,6 @@ public class SwipeDetection : MonoBehaviour
     private float startTime;
     private Vector2 endPosition;
     private float endTime;
-    private Coroutine trailCoroutine;
 
     private void Awake()
     {
@@ -35,7 +34,7 @@ public class SwipeDetection : MonoBehaviour
     }
 
     private void SwipeEnd(Vector2 position, float time)
-    {
+    {        
         endPosition = position;
         endTime = time;
         DetectSwipe();

@@ -14,7 +14,7 @@ public class MoveObject : MonoBehaviour
     private void OnTouch(Vector2 position, float time)
     {
         RaycastHit hit; 
-        Debug.DrawRay(position, Vector3.forward, Color.magenta);
+        Debug.DrawRay(position, Vector3.forward,Color.magenta,100);
         
         if (Physics.Raycast(position, Vector3.forward, out hit, 100, interactiveMask))
         {
