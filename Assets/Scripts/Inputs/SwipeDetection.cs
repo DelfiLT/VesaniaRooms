@@ -1,8 +1,15 @@
-using System.Collections;
 using UnityEngine;
 
 public class SwipeDetection : MonoBehaviour
 {
+    
+    #region Events
+    public delegate void SwipeRight();
+    public event SwipeRight OnSwipeRight;
+    public delegate void SwipeLeft();
+    public event SwipeLeft OnSwipeLeft;
+    #endregion
+    
     [Header("Configs")]
     [SerializeField]
     private float minDistance = .2f;
@@ -10,12 +17,6 @@ public class SwipeDetection : MonoBehaviour
     private float maxTime = 1f;
     [SerializeField, Range(0,1)]
     private float directionThreshold = .9f;
-    [SerializeField]
-    private GameObject trail;
-
-    [Header("Mechanics")]
-    [SerializeField]
-    private Rotation rotation;
 
     private InputManager inputManager;
 
@@ -23,28 +24,27 @@ public class SwipeDetection : MonoBehaviour
     private float startTime;
     private Vector2 endPosition;
     private float endTime;
-    private Coroutine trailCoroutine;
+    public static SwipeDetection Instance { get; private set; }
 
     private void Awake()
     {
         inputManager = InputManager.Instance;
+        Singleton();
+    }
+    void Singleton()
+    {
+        if (Instance != null && Instance != this) { Destroy(this); }
+        else { Instance = this; }
     }
 
     private void SwipeStart(Vector2 position, float time)
     {
-        trail.SetActive(true);
-        trail.transform.position = position;
-        trailCoroutine = StartCoroutine(Trail());
-
         startPosition = position;
         startTime = time;
     }
 
     private void SwipeEnd(Vector2 position, float time)
     {
-        trail.SetActive(false);
-        StopCoroutine(trailCoroutine);
-
         endPosition = position;
         endTime = time;
         DetectSwipe();
@@ -64,22 +64,11 @@ public class SwipeDetection : MonoBehaviour
     {
         if(Vector2.Dot(Vector2.right, direction) > directionThreshold) 
         {
-            Debug.Log("Rotate right");
-            rotation.RotateRoomRight();
+            OnSwipeRight?.Invoke();
         }
         else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
         {
-            Debug.Log("Rotate left");
-            rotation.RotateRoomLeft();
-        }
-    }
-
-    private IEnumerator Trail()
-    {
-        while(true)
-        {
-            trail.transform.position = inputManager.PrimaryPosition();
-            yield return null;
+            OnSwipeLeft?.Invoke();
         }
     }
 
