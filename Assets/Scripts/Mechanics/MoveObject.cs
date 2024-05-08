@@ -11,15 +11,11 @@ public class MoveObject : MonoBehaviour
         inputManager = InputManager.Instance;
     }
     
-    private void OnTouch(Vector2 position, float time)
+    private void OnTouch(Ray ray)
     {
-        RaycastHit hit; 
-        Debug.DrawRay(position, Vector3.forward,Color.magenta,100);
-        
-        if (Physics.Raycast(position, Vector3.forward, out hit, 100, interactiveMask))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             InteractableObject touchedObject = hit.transform.gameObject.GetComponent<InteractableObject>();
-
             if(touchedObject != null)
             {
                 touchedObject.HandleMovement();
@@ -29,11 +25,11 @@ public class MoveObject : MonoBehaviour
     
     private void OnEnable()
     {
-        inputManager.OnStartTouch += OnTouch;
+        inputManager.OnTouch += OnTouch;
     }
 
     private void OnDisable()
     {
-        inputManager.OnStartTouch -= OnTouch;
+        inputManager.OnTouch -= OnTouch;
     }
 }

@@ -64,13 +64,13 @@ public class SwipeDetection : MonoBehaviour
 
     private void OnEnable()
     {
-        inputManager.OnStartTouch += SwipeStart;
-        inputManager.OnEndTouch += SwipeEnd;
+        inputManager.OnStartSwipe += SwipeStart;
+        inputManager.OnEndSwipe += SwipeEnd;
     }
 
     private void OnDisable()
     {
-        inputManager.OnStartTouch -= SwipeStart;
-        inputManager.OnEndTouch -= SwipeEnd;
+        inputManager.OnStartSwipe -= SwipeStart;
+        inputManager.OnEndSwipe -= SwipeEnd;
     }
 }
