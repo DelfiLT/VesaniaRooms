@@ -12,10 +12,6 @@ public class ObjectColor : MonoBehaviour
         _renderer = GetComponent<MeshRenderer>();
     }
 
-    private void Start()
-    {
-        ColorChange.OnChangeColor += ChangeMaterial;
-    }
     void ChangeMaterial()
     {
         if (_renderer.material.name != secondaryMaterial.name + " (Instance)")
@@ -29,7 +25,12 @@ public class ObjectColor : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
+    private void OnEnable()
+    {
+        ColorChange.OnChangeColor += ChangeMaterial;
+    }
+
+    private void OnDisable()
     {
         ColorChange.OnChangeColor -= ChangeMaterial;
     }

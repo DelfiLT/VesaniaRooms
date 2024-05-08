@@ -6,12 +6,10 @@ public class InputManager : MonoBehaviour
 {
 
     #region Events
-    public delegate void StartSwipe(Vector2 position, float time);
-    public event StartSwipe OnStartSwipe;
-    public delegate void EndSwipe(Vector2 position, float time);
-    public event EndSwipe OnEndSwipe;
-    public delegate void Touch(Ray ray);
-    public event Touch OnTouch;
+    public delegate void StartTouch(Vector2 position, float time);
+    public event StartTouch OnStartTouch;
+    public delegate void EndTouch(Vector2 position, float time);
+    public event StartTouch OnEndTouch;
     #endregion
 
     private TouchControls touchControls;
@@ -40,14 +38,17 @@ public class InputManager : MonoBehaviour
 
     private void StartPrimaryTouch(InputAction.CallbackContext context)
     {
-        if (OnStartSwipe != null) OnStartSwipe(Utils.ScreenToWorld(mainCamera, touchControls.Touch.PrimaryPosition.ReadValue<Vector2>()), (float)context.startTime);
-        if (OnTouch != null)
-            OnTouch(Utils.ScreenPointToRay(mainCamera, touchControls.Touch.PrimaryPosition.ReadValue<Vector2>()));
+        if (OnStartTouch != null) OnStartTouch(Utils.ScreenToWorld(mainCamera, touchControls.Touch.PrimaryPosition.ReadValue<Vector2>()), (float)context.startTime);
     }
 
     private void EndPrimaryTouch(InputAction.CallbackContext context)
     {
-        if (OnEndSwipe != null) OnEndSwipe(Utils.ScreenToWorld(mainCamera, touchControls.Touch.PrimaryPosition.ReadValue<Vector2>()), (float)context.time);
+        if (OnEndTouch != null) OnEndTouch(Utils.ScreenToWorld(mainCamera, touchControls.Touch.PrimaryPosition.ReadValue<Vector2>()), (float)context.time);
+    }
+
+    public Vector2 PrimaryPosition()
+    {
+        return Utils.ScreenToWorld(mainCamera, touchControls.Touch.PrimaryPosition.ReadValue<Vector2>());
     }
 
     private void OnEnable()
