@@ -1,15 +1,8 @@
+using System.Collections;
 using UnityEngine;
 
 public class SwipeDetection : MonoBehaviour
 {
-    
-    #region Events
-    public delegate void SwipeRight();
-    public event SwipeRight OnSwipeRight;
-    public delegate void SwipeLeft();
-    public event SwipeLeft OnSwipeLeft;
-    #endregion
-    
     [Header("Configs")]
     [SerializeField]
     private float minDistance = .2f;
@@ -17,6 +10,10 @@ public class SwipeDetection : MonoBehaviour
     private float maxTime = 1f;
     [SerializeField, Range(0,1)]
     private float directionThreshold = .9f;
+    
+    [Header("Mechanics")]
+    [SerializeField]
+    private Rotation rotation;
 
     private InputManager inputManager;
 
@@ -24,17 +21,10 @@ public class SwipeDetection : MonoBehaviour
     private float startTime;
     private Vector2 endPosition;
     private float endTime;
-    public static SwipeDetection Instance { get; private set; }
 
     private void Awake()
     {
         inputManager = InputManager.Instance;
-        Singleton();
-    }
-    void Singleton()
-    {
-        if (Instance != null && Instance != this) { Destroy(this); }
-        else { Instance = this; }
     }
 
     private void SwipeStart(Vector2 position, float time)
@@ -44,7 +34,7 @@ public class SwipeDetection : MonoBehaviour
     }
 
     private void SwipeEnd(Vector2 position, float time)
-    {
+    {        
         endPosition = position;
         endTime = time;
         DetectSwipe();
@@ -64,23 +54,23 @@ public class SwipeDetection : MonoBehaviour
     {
         if(Vector2.Dot(Vector2.right, direction) > directionThreshold) 
         {
-            OnSwipeRight?.Invoke();
+            rotation.RotateRoomRight();
         }
         else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
         {
-            OnSwipeLeft?.Invoke();
+            rotation.RotateRoomLeft();
         }
     }
 
     private void OnEnable()
     {
-        inputManager.OnStartTouch += SwipeStart;
-        inputManager.OnEndTouch += SwipeEnd;
+        inputManager.OnStartSwipe += SwipeStart;
+        inputManager.OnEndSwipe += SwipeEnd;
     }
 
     private void OnDisable()
     {
-        inputManager.OnStartTouch -= SwipeStart;
-        inputManager.OnEndTouch -= SwipeEnd;
+        inputManager.OnStartSwipe -= SwipeStart;
+        inputManager.OnEndSwipe -= SwipeEnd;
     }
 }
