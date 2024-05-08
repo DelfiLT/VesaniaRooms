@@ -9,6 +9,6 @@ public class ColorChange : MonoBehaviour
     
     public void ChangeColorEvent()
     {
-        if (OnChangeColor != null) OnChangeColor.Invoke();
+        OnChangeColor?.Invoke();
     }
 }
