@@ -28,7 +28,6 @@ public class SwipeDetection : MonoBehaviour
 
     public static SwipeDetection Instance { get; private set; }
 
-
     private void Awake()
     {
         inputManager = InputManager.Instance;
