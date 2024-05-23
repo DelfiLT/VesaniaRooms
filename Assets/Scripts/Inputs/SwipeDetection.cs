@@ -1,8 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
 
 public class SwipeDetection : MonoBehaviour
 {
+    #region Events
+    public delegate void RotateRight();
+    public static RotateRight OnRotateRight;
+    public delegate void RotateLeft();
+    public static RotateLeft OnRotateLeft;
+    #endregion
+
     [Header("Configs")]
     [SerializeField]
     private float minDistance = .2f;
@@ -10,10 +18,6 @@ public class SwipeDetection : MonoBehaviour
     private float maxTime = 1f;
     [SerializeField, Range(0,1)]
     private float directionThreshold = .9f;
-    
-    [Header("Mechanics")]
-    [SerializeField]
-    private Rotation rotation;
 
     private InputManager inputManager;
 
@@ -22,9 +26,18 @@ public class SwipeDetection : MonoBehaviour
     private Vector2 endPosition;
     private float endTime;
 
+    public static SwipeDetection Instance { get; private set; }
+
     private void Awake()
     {
         inputManager = InputManager.Instance;
+        Singleton();
+    }
+
+    void Singleton()
+    {
+        if (Instance != null && Instance != this) { Destroy(this); }
+        else { Instance = this; }
     }
 
     private void SwipeStart(Vector2 position, float time)
@@ -54,11 +67,11 @@ public class SwipeDetection : MonoBehaviour
     {
         if(Vector2.Dot(Vector2.right, direction) > directionThreshold) 
         {
-            rotation.RotateRoomRight();
+            OnRotateRight?.Invoke();
         }
         else if (Vector2.Dot(Vector2.left, direction) > directionThreshold)
         {
-            rotation.RotateRoomLeft();
+            OnRotateLeft?.Invoke();
         }
     }
 
