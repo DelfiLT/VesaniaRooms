@@ -13,7 +13,7 @@ public class MoveObject : MonoBehaviour
     
     private void OnTouch(Ray ray)
     {
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit, 100, interactiveMask))
         {
             InteractableObject touchedObject = hit.transform.gameObject.GetComponent<InteractableObject>();
             if(touchedObject != null)

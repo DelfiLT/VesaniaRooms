@@ -22,7 +22,7 @@ public class InteractableObject : MonoBehaviour
                 .setEaseInOutQuad();
             } else
             {
-                transform.LeanMove(new Vector3(transform.position.x + 0.1f, transform.position.y,
+                transform.LeanMove(new Vector3(transform.position.x + xPos, transform.position.y,
                 transform.position.z - zPos), 1)
                 .setEaseInOutQuad();
             }
