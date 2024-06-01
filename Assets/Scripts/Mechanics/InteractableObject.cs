@@ -7,8 +7,8 @@ public class InteractableObject : MonoBehaviour
     private bool canInteract = true;
     private bool moved = false;
 
-    [SerializeField, Range(0, 0.1f)] float xPos;
-    [SerializeField, Range(0, 0.1f)] float zPos;
+    [SerializeField, Range(-0.1f, 0.1f)] float xPos;
+    [SerializeField, Range(-0.1f, 0.1f)] float zPos;
 
     public void HandleMovement()
     {
