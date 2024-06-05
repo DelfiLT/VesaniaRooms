@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3028,9 +3028,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: c121feb6c9b81674798ecf60bb6eb03a, type: 2}
-        m_TargetAssemblyTypeName: ScenesData, Assembly-CSharp
-        m_MethodName: NextLevel
+      - m_Target: {fileID: 1911273384}
+        m_TargetAssemblyTypeName: PuzzleManager, Assembly-CSharp
+        m_MethodName: FinishLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4095,6 +4095,7 @@ GameObject:
   - component: {fileID: 1911273379}
   - component: {fileID: 1911273380}
   - component: {fileID: 1911273383}
+  - component: {fileID: 1911273384}
   m_Layer: 0
   m_Name: Mangers
   m_TagString: Untagged
@@ -4171,6 +4172,19 @@ MonoBehaviour:
   minDistance: 0.8
   maxTime: 0.8
   directionThreshold: 0.1
+--- !u!114 &1911273384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911273378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10ebc99886e06f4c97fe6f22b8c69b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puzzles: 01
 --- !u!1 &1995151457
 GameObject:
   m_ObjectHideFlags: 0
