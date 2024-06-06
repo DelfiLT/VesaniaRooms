@@ -17,13 +17,13 @@ public class InteractableObject : MonoBehaviour
             StartCoroutine(Interact());
             if (moved)
             {
-                transform.LeanMove(new Vector3(transform.position.x - xPos, transform.position.y,
-                transform.position.z + zPos), 1)
+                transform.LeanMoveLocal(new Vector3(transform.localPosition.x - xPos, transform.localPosition.y,
+                transform.localPosition.z + zPos), 1)
                 .setEaseInOutQuad();
             } else
             {
-                transform.LeanMove(new Vector3(transform.position.x + xPos, transform.position.y,
-                transform.position.z - zPos), 1)
+                transform.LeanMoveLocal(new Vector3(transform.localPosition.x + xPos, transform.localPosition.y,
+                transform.localPosition.z - zPos), 1)
                 .setEaseInOutQuad();
             }
 
