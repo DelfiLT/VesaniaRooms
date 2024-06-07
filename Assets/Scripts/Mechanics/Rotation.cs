@@ -6,10 +6,14 @@ public class Rotation : MonoBehaviour
     private bool canInteract = true;
 
     [SerializeField] private float angle;
+    [SerializeField] private GameObject[] frontSideObjects;
+    [SerializeField] private GameObject[] backSideObjects;
+    
+    private bool frontSide;
 
     private void Awake()
     {
-        StartCoroutine(Interact());
+        frontSide = true;
     }
 
     private void Start()
@@ -38,6 +42,40 @@ public class Rotation : MonoBehaviour
         }
     }
 
+    private void SwitchSide()
+    {
+        frontSide = !frontSide;
+            
+        if (frontSide)
+        {
+            foreach (GameObject frontSideObject in frontSideObjects)
+            {
+                if (!frontSideObject) return;
+                frontSideObject.SetActive(true);
+            }
+
+            foreach (GameObject backSideObject in backSideObjects)
+            {
+                if(!backSideObject) return;
+                backSideObject.SetActive(false);
+            }
+        }
+        else
+        {
+            foreach (GameObject frontSideObject in frontSideObjects)
+            {
+                if (!frontSideObject) return;
+                frontSideObject.SetActive(false);
+            }
+
+            foreach (GameObject backSideObject in backSideObjects)
+            {
+                if(!backSideObject) return;
+                backSideObject.SetActive(true);
+            }
+        }
+    }
+    
     private void OnDestroy()
     {
         SwipeDetection.OnRotateRight -= RotateRoomRight;
@@ -48,6 +86,7 @@ public class Rotation : MonoBehaviour
     {
         canInteract = false;
         yield return new WaitForSeconds(1f);
+        SwitchSide();
         canInteract = true;
     }
 }

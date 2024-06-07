@@ -9,13 +9,10 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     public Button playButton;
-    public TextMeshProUGUI buttonText;
 
     private void Awake()
     {
         DataHandler.LoadData();
-
-        buttonText.text = DataHandler.GetLevelIndex() == 0 ? "New Game" : "Continue";
 
         playButton.onClick.AddListener(() =>
         {
