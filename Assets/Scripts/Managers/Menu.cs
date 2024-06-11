@@ -1,33 +1,33 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
     public Button playButton;
+    public Button[] levels;
 
     private void Awake()
     {
         DataHandler.LoadData();
 
+        foreach (Button level in levels)
+        {
+            int buttonIndex = Array.IndexOf(levels, level);
+            
+            if (DataHandler.GetLevelIndex() <= buttonIndex)
+            {
+                level.interactable = false;
+            }
+            else
+            {
+                level.interactable = true;
+            }
+        }
+
         playButton.onClick.AddListener(() =>
         {
-            PlayLevel();
+            SceneUtils.PlayScene(DataHandler.GetLevelIndex().ToString());
         });
-    }
-
-    public void PlayLevel()
-    {
-        Debug.Log(DataHandler.GetLevelIndex());
-        SceneManager.LoadScene("Level" + DataHandler.GetLevelIndex());
-    }
-
-    public void PlayLevelWithIndex(int index)
-    {
-        SceneManager.LoadScene("Level" + index);
     }
 }

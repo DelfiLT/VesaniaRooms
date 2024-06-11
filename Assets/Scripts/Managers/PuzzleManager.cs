@@ -1,11 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PuzzleManager : MonoBehaviour
 {
     [SerializeField] private bool[] puzzles;
+
+    private void Awake()
+    {
+        DataHandler.LoadData();
+    }
 
     public void CompletePuzzle(int puzzleIndex)
     {
@@ -15,6 +18,13 @@ public class PuzzleManager : MonoBehaviour
     public void FinishLevel()
     {
         DataHandler.SaveData();
-        SceneManager.LoadScene("Menu");
+        if (DataHandler.GetLevelIndex() == 2)
+        {
+            SceneUtils.PlayScene("Menu");
+        }
+        else
+        {
+           SceneUtils.PlayScene(DataHandler.GetLevelIndex().ToString());
+        }
     }
 }
