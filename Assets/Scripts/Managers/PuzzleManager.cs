@@ -15,16 +15,19 @@ public class PuzzleManager : MonoBehaviour
         puzzles[puzzleIndex] = true;
     }
 
-    public void FinishLevel()
+    public void FinishLevel(int levelIndex)
     {
-        DataHandler.SaveData();
-        if (DataHandler.GetLevelIndex() == 2)
+        DataHandler.SaveData(levelIndex);
+
+        if (DataHandler.HasNextLevel(levelIndex))
         {
-            SceneUtils.PlayScene("Menu");
+            SceneUtils.PlayScene((levelIndex + 1).ToString());
         }
         else
         {
-           SceneUtils.PlayScene(DataHandler.GetLevelIndex().ToString());
+            Debug.Log("No more available levels.");
+            SceneUtils.PlayScene("Menu");
         }
     }
+
 }

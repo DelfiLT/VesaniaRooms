@@ -14,7 +14,7 @@ public class Menu : MonoBehaviour
         foreach (Button level in levels)
         {
             int buttonIndex = Array.IndexOf(levels, level);
-            
+
             if (DataHandler.GetLevelIndex() <= buttonIndex)
             {
                 level.interactable = false;
@@ -23,6 +23,10 @@ public class Menu : MonoBehaviour
             {
                 level.interactable = true;
             }
+
+            level.onClick.AddListener(() => {
+                SceneUtils.PlayScene(buttonIndex.ToString());
+            });
         }
 
         playButton.onClick.AddListener(() =>
