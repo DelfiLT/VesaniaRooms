@@ -1,36 +1,37 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
     public Button playButton;
-    public TextMeshProUGUI buttonText;
+    public Button[] levels;
 
     private void Awake()
     {
         DataHandler.LoadData();
 
-        buttonText.text = DataHandler.GetLevelIndex() == 0 ? "New Game" : "Continue";
+        foreach (Button level in levels)
+        {
+            int buttonIndex = Array.IndexOf(levels, level);
+
+            if (DataHandler.GetLevelIndex() <= buttonIndex)
+            {
+                level.interactable = false;
+            }
+            else
+            {
+                level.interactable = true;
+            }
+
+            level.onClick.AddListener(() => {
+                SceneUtils.PlayScene(buttonIndex.ToString());
+            });
+        }
 
         playButton.onClick.AddListener(() =>
         {
-            PlayLevel();
+            SceneUtils.PlayScene(DataHandler.GetLevelIndex().ToString());
         });
-    }
-
-    public void PlayLevel()
-    {
-        Debug.Log(DataHandler.GetLevelIndex());
-        SceneManager.LoadScene("Level" + DataHandler.GetLevelIndex());
-    }
-
-    public void PlayLevelWithIndex(int index)
-    {
-        SceneManager.LoadScene("Level" + index);
     }
 }

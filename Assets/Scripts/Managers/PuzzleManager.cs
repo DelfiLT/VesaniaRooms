@@ -1,20 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PuzzleManager : MonoBehaviour
 {
-    [SerializeField] private bool[] puzzles;
+    public bool[] puzzles;
+    [SerializeField] private GameObject winPanel;
+
+    private void Awake()
+    {
+        DataHandler.LoadData();
+    }
 
     public void CompletePuzzle(int puzzleIndex)
     {
         puzzles[puzzleIndex] = true;
     }
 
-    public void FinishLevel()
+    public void FinishLevel(int levelIndex)
     {
-        DataHandler.SaveData();
-        SceneManager.LoadScene("Menu");
+        //TO DO: Make a coroutine to unlock the padlock with an animation and then open the victory panel
+        DataHandler.SaveData(levelIndex);
+        winPanel.SetActive(true);   
     }
 }

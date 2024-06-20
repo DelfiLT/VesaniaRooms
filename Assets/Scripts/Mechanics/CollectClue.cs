@@ -18,7 +18,7 @@ public class CollectClue : MonoBehaviour
     {
         if (Physics.Raycast(ray, out RaycastHit hit, 100, clueMask))
         {
-            hit.transform.gameObject.SetActive(false);
+            Destroy(hit.transform.gameObject);
             notesClue.SetActive(true);
         }
     }
