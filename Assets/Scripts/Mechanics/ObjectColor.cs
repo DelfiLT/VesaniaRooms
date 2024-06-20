@@ -16,16 +16,16 @@ public class ObjectColor : MonoBehaviour
     {
         ColorChange.OnChangeColor += ChangeMaterial;
     }
-    void ChangeMaterial()
+
+    void ChangeMaterial(bool originalColor)
     {
-        if (_renderer.material.name != secondaryMaterial.name + " (Instance)")
-        {
-            _renderer.material = secondaryMaterial;
-            return;
-        } 
-        if (_renderer.material.name != primaryMaterial.name + " (Instance)")
+        if (originalColor)
         {
             _renderer.material = primaryMaterial;
+        }
+        else
+        {
+            _renderer.material = secondaryMaterial;
         }
     }
 
