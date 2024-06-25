@@ -257,7 +257,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1719308122}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PuzzleManager, Assembly-CSharp
         m_MethodName: FinishLevel
         m_Mode: 3
@@ -1406,7 +1406,6 @@ GameObject:
   - component: {fileID: 1719308119}
   - component: {fileID: 1719308120}
   - component: {fileID: 1719308121}
-  - component: {fileID: 1719308122}
   m_Layer: 0
   m_Name: Mangers
   m_TagString: Untagged
@@ -1480,19 +1479,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b9a018bc8bc4358894f9cdb4c3836a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1719308122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719308115}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10ebc99886e06f4c97fe6f22b8c69b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  puzzles: 
 --- !u!1 &1739798808
 GameObject:
   m_ObjectHideFlags: 0
