@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Rotation : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Rotation : MonoBehaviour
     [SerializeField] private float angle;
     [SerializeField] private GameObject[] frontSideObjects;
     [SerializeField] private GameObject[] backSideObjects;
+    [SerializeField] private List<AudioClip> swipeClips = new List<AudioClip>();
     
     private bool frontSide;
 
@@ -84,6 +86,7 @@ public class Rotation : MonoBehaviour
 
     private IEnumerator Interact()
     {
+        SoundManager.Instance.RandomizedSFX(swipeClips);
         canInteract = false;
         yield return new WaitForSeconds(1f);
         SwitchSide();

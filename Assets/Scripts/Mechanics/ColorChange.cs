@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ColorChange : MonoBehaviour
@@ -8,9 +9,11 @@ public class ColorChange : MonoBehaviour
     public static bool originalColor = true;
     #endregion
 
+    [SerializeField] private List<AudioClip> colorChangeClips = new List<AudioClip>();
     public void ChangeColorEvent()
     {
         originalColor = !originalColor;
         OnChangeColor?.Invoke(originalColor);
+        SoundManager.Instance.RandomizedSFX(colorChangeClips);
     }
 }
