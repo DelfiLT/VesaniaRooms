@@ -10,10 +10,12 @@ public class InteractableObject : MonoBehaviour
     [SerializeField, Range(-0.1f, 0.1f)] float xPos;
     [SerializeField, Range(-0.1f, 0.1f)] float zPos;
 
+    [SerializeField] private List<AudioClip> interactionClips = new List<AudioClip>();
     public void HandleMovement()
     {
         if (canInteract)
         {
+            SoundManager.Instance.RandomizedSFX(interactionClips);
             StartCoroutine(Interact());
             if (moved)
             {

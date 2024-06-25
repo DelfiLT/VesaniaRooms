@@ -16,5 +16,6 @@ public class PuzzleManager : MonoBehaviour
     {
         DataHandler.SaveData();
         SceneManager.LoadScene("Menu");
+        SoundManager.Instance.ExitLevel();
     }
 }

@@ -27,7 +27,7 @@ public class Menu : MonoBehaviour
     public void PlayLevel()
     {
         Debug.Log(DataHandler.GetLevelIndex());
-        SceneManager.LoadScene("Trial" + DataHandler.GetLevelIndex());
+        SceneManager.LoadScene("Level" + DataHandler.GetLevelIndex());
         SoundManager.Instance.PlaySFX(buttonSound);
         SoundManager.Instance.StartLevelMusic();
     }

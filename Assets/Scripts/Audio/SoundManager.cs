@@ -7,19 +7,13 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance { get; private set; }
 
     [SerializeField] private AudioSource sfxAudioSource, musicAudioSource, ambienceAudioSource;
-    public AudioSource MusicSource
-    {
-        get { return musicAudioSource; }
-    }
-    public AudioSource AmbienceSource
-    {
-        get { return ambienceAudioSource; }
-    }
 
-    public float fadeDuration = 1.5f;
-    private bool firstLevelTrack = true;
+    [SerializeField] private float fadeDuration = 1.5f;
+    [SerializeField] private AudioClip menuMusicClip;
     [SerializeField] private List<ScriptableMusic> musicTracks = new List<ScriptableMusic>();
     [SerializeField] private List<AudioClip> ambienceTracks = new List<AudioClip>();
+
+    private bool firstLevelTrack = true;
 
     private void Awake()
     {
@@ -36,14 +30,12 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    private void Start()
-    {
-        DataHandler.LoadData();
-    }
-
     public void StartLevelMusic()
     {
+        DataHandler.LoadData();
         StartCoroutine(LevelMusic());
+        ambienceAudioSource.clip = ambienceTracks[DataHandler.GetLevelIndex()];
+        StartCoroutine(FadeIn(ambienceAudioSource));
     }
     public void RandomizedSFX(List<AudioClip> clipList)
     {
@@ -55,19 +47,26 @@ public class SoundManager : MonoBehaviour
     }
     public void StartFadeOut(AudioSource source)
     {
-        StartCoroutine(FadeOut(source, fadeDuration));
+        StartCoroutine(FadeOut(source));
     }
     public void StartFadeIn(AudioSource source)
     {
-        StartCoroutine(FadeIn(source, fadeDuration));
+        StartCoroutine(FadeIn(source));
     }
     public void StartTransition(AudioSource source, AudioClip newClip)
     {
-        StartCoroutine(FadeOutIn(source, newClip, fadeDuration));
+        StartCoroutine(FadeOutIn(source, newClip));
+    }
+    public void ExitLevel()
+    {
+        StopAllCoroutines();
+        StartFadeOut(ambienceAudioSource);
+        StartFadeOut(sfxAudioSource);
+        firstLevelTrack = true;
+        StartCoroutine(FadeOutIn(musicAudioSource,menuMusicClip));
     }
 
-
-    private IEnumerator FadeOut(AudioSource audioSource, float fadeDuration)
+    private IEnumerator FadeOut(AudioSource audioSource)
     {
         float startVolume = audioSource.volume;
 
@@ -80,64 +79,45 @@ public class SoundManager : MonoBehaviour
         audioSource.Stop();
         audioSource.volume = startVolume;
     }
-    private IEnumerator FadeIn(AudioSource audioSource, float fadeDuration)
+    private IEnumerator FadeIn(AudioSource audioSource)
     {
-        Debug.Log("Music10");
         audioSource.Play();
         audioSource.volume = 0f;
         float targetVolume = 1.0f;
 
         while (audioSource.volume < targetVolume)
         {
-            Debug.Log("MusicIn");
             audioSource.volume += targetVolume * Time.deltaTime / fadeDuration;
             yield return null;
         }
-        Debug.Log("Music11");
         audioSource.volume = targetVolume;
     }
-    private IEnumerator FadeOutIn(AudioSource audioSource, AudioClip newClip, float fadeDuration)
+    private IEnumerator FadeOutIn(AudioSource audioSource, AudioClip newClip)
     {
-        Debug.Log("Music2");
-        yield return StartCoroutine(FadeOut(audioSource, fadeDuration));
-        Debug.Log("Music3");
+        yield return StartCoroutine(FadeOut(audioSource));
+        yield return new WaitForSeconds(0.5f);
         audioSource.clip = newClip;
         audioSource.Play();
-
-        yield return StartCoroutine(FadeIn(audioSource, fadeDuration));
-        Debug.Log("Music4");
+        StartCoroutine(FadeIn(audioSource));
     }
-
     private IEnumerator LevelMusic()
     {
         if(firstLevelTrack)
         {
-            Debug.Log("Music1");
-            StartTransition(musicAudioSource, musicTracks[DataHandler.GetLevelIndex()].S_groupTracks[0]);
-            Debug.Log("Music5");
+            yield return StartCoroutine(FadeOutIn(musicAudioSource, musicTracks[DataHandler.GetLevelIndex()].S_groupTracks[0]));
             firstLevelTrack = false;
             float firstDelay = musicTracks[DataHandler.GetLevelIndex()].S_groupTracks[0].length - fadeDuration;
             yield return new WaitForSeconds(firstDelay);
-            Debug.Log("Music6");
-            yield return StartCoroutine(FadeOut(musicAudioSource, fadeDuration));
-            Debug.Log("Music7");
+            yield return StartCoroutine(FadeOut(musicAudioSource));
         }
-        Debug.Log("Music8");
         yield return new WaitForSeconds(Random.Range(4f, 10f));
-        Debug.Log("Music9");
         int newClip = Random.Range(0, musicTracks[DataHandler.GetLevelIndex()].S_groupTracks.Count);
         musicAudioSource.clip = musicTracks[DataHandler.GetLevelIndex()].S_groupTracks[newClip];
-        StartCoroutine(FadeIn(musicAudioSource, fadeDuration));
-        Debug.Log("Music12");
+        StartCoroutine(FadeIn(musicAudioSource));
         float delay = musicTracks[DataHandler.GetLevelIndex()].S_groupTracks[newClip].length - fadeDuration;
         yield return new WaitForSeconds(delay);
-        Debug.Log("Music13");
-        yield return StartCoroutine(FadeOut(musicAudioSource, fadeDuration));
-        Debug.Log("Music14");
+        yield return StartCoroutine(FadeOut(musicAudioSource));
         yield return StartCoroutine(LevelMusic());
-        Debug.Log("Music15");
-
-
     }
 }
 
