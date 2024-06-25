@@ -10,6 +10,8 @@ public class WatchAd : MonoBehaviour
     [SerializeField] private string clueInfo;
     [SerializeField] private GameObject advertisementPanel;
     public Button watchAdBtn;
+
+    [SerializeField] private AudioClip padlockClip;
     
     public void PlayAdvertisement()
     {
@@ -20,6 +22,7 @@ public class WatchAd : MonoBehaviour
     {
         advertisementPanel.SetActive(true);
         yield return new WaitForSeconds(3);
+        SoundManager.Instance.PlaySFX(padlockClip);
         watchAdBtn.interactable = false;
         advertisementPanel.SetActive(false);
         clueInfoText.text = clueInfo;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
 {
+    [SerializeField] private List<AudioClip> interactionClips = new List<AudioClip>();
     private bool canInteract = true;
     private bool moved = false;
 
@@ -15,6 +16,7 @@ public class InteractableObject : MonoBehaviour
         if (canInteract)
         {
             StartCoroutine(Interact());
+            SoundManager.Instance.RandomizedSFX(interactionClips);
             if (moved)
             {
                 transform.LeanMoveLocal(new Vector3(transform.localPosition.x - xPos, transform.localPosition.y,
