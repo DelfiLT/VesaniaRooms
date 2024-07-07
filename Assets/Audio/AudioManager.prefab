@@ -176,7 +176,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -443,3 +443,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 89dfc3605790a464a973d58627977607, type: 2}
   ambienceTracks:
   - {fileID: 8300000, guid: b98fb3e8072947f40b6574cefa1708ff, type: 3}
+  playButtonClip: {fileID: 8300000, guid: 20451556a6468bb4eb2983cca3dff1f7, type: 3}

@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioClip menuMusicClip;
     [SerializeField] private List<ScriptableMusic> musicTracks = new List<ScriptableMusic>();
     [SerializeField] private List<AudioClip> ambienceTracks = new List<AudioClip>();
+    [SerializeField] private AudioClip playButtonClip;
 
     private bool firstLevelTrack = true;
 
@@ -33,13 +34,14 @@ public class SoundManager : MonoBehaviour
     public void StartLevelMusic()
     {
         DataHandler.LoadData();
+        PlaySFX(playButtonClip);
         StartCoroutine(LevelMusic());
         ambienceAudioSource.clip = ambienceTracks[DataHandler.GetLevelIndex()];
         StartCoroutine(FadeIn(ambienceAudioSource));
     }
     public void RandomizedSFX(List<AudioClip> clipList)
     {
-        PlaySFX(clipList[Random.Range(0, clipList.Count)]);
+        PlaySFX(clipList[Random.Range(0, clipList.Count)]);   
     }
     public void PlaySFX(AudioClip clip)
     {

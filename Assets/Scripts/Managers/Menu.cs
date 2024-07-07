@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    [SerializeField] private AudioClip playButtonClip;
     public Button playButton;
     public Button[] levels;
 
@@ -33,13 +32,7 @@ public class Menu : MonoBehaviour
         playButton.onClick.AddListener(() =>
         {
             SceneUtils.PlayScene(DataHandler.GetLevelIndex().ToString());
-            PlayLevelAudio();
         });
     }
 
-    private void PlayLevelAudio()
-    {
-        SoundManager.Instance.PlaySFX(playButtonClip);
-        SoundManager.Instance.StartLevelMusic();
-    }
 }
