@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class PuzzleManager : MonoBehaviour
 {
     [SerializeField] private AudioClip winClip;
+    [SerializeField] private AudioClip padlockClip;
     public bool[] puzzles;
     [SerializeField] private GameObject winPanel;
 
@@ -16,6 +17,7 @@ public class PuzzleManager : MonoBehaviour
     public void CompletePuzzle(int puzzleIndex)
     {
         puzzles[puzzleIndex] = true;
+        SoundManager.Instance.PlaySFX(padlockClip);
     }
 
     public void FinishLevel(int levelIndex)
