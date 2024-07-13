@@ -23,7 +23,7 @@ public class PuzzleManager : MonoBehaviour
     public void FinishLevel(int levelIndex)
     {
         //TO DO: Make a coroutine to unlock the padlock with an animation and then open the victory panel
-        DataHandler.SaveData(levelIndex);
+        //DataHandler.SaveData(levelIndex);
         winPanel.SetActive(true);
         SoundManager.Instance.PlaySFX(winClip);
     }

@@ -5,7 +5,7 @@ public static class DataHandler
 {
     public static Wrapper wrapper;
     public static bool loading;
-    public static int maxLevels = 2;
+    public static int maxLevels = 1;
 
     public static void SaveData(int levelIndex)
     {

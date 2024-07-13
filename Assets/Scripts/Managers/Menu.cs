@@ -5,29 +5,10 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     public Button playButton;
-    public Button[] levels;
 
     private void Awake()
     {
         DataHandler.LoadData();
-
-        foreach (Button level in levels)
-        {
-            int buttonIndex = Array.IndexOf(levels, level);
-
-            if (DataHandler.GetLevelIndex() <= buttonIndex)
-            {
-                level.interactable = false;
-            }
-            else
-            {
-                level.interactable = true;
-            }
-
-            level.onClick.AddListener(() => {
-                SceneUtils.PlayScene(buttonIndex.ToString());
-            });
-        }
 
         playButton.onClick.AddListener(() =>
         {

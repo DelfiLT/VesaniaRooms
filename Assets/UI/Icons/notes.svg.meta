@@ -1,0 +1,54 @@
+fileFormatVersion: 2
+guid: 4abab582c21562541866a6b9d290eff9
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: a57477913897c46af95d590f580878bd, type: 3}
+  svgType: 1
+  texturedSpriteMeshType: 1
+  svgPixelsPerUnit: 0.1
+  gradientResolution: 64
+  alignment: 0
+  customPivot: {x: 0, y: 0}
+  generatePhysicsShape: 0
+  viewportOptions: 0
+  preserveViewport: 0
+  advancedMode: 1
+  predefinedResolutionIndex: 1
+  targetResolution: 1080
+  resolutionMultiplier: 1
+  stepDistance: 1
+  samplingStepDistance: 100
+  maxCordDeviationEnabled: 1
+  maxCordDeviation: 1
+  maxTangentAngleEnabled: 1
+  maxTangentAngle: 5
+  keepTextureAspectRatio: 1
+  textureSize: 256
+  textureWidth: 256
+  textureHeight: 256
+  wrapMode: 0
+  filterMode: 0
+  sampleCount: 8
+  preserveSVGImageAspect: 0
+  useSVGPixelsPerUnit: 0
+  spriteData:
+    TessellationDetail: 0
+    SpriteRect:
+      name: notesSprite
+      originalName: 
+      pivot: {x: 0.49456522, y: 0.50961536}
+      alignment: 0
+      border: {x: 0, y: 0, z: 0, w: 0}
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 23
+        height: 26
+      spriteID: 47f2fffcb44435e4ba40af73a99844e0
+    PhysicsOutlines: []
