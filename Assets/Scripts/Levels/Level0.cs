@@ -59,7 +59,7 @@ public class Level0 : MonoBehaviour
                 GameObject hitObject = hit.transform.gameObject;
                 pillowSelected = hitObject;
                 originalPosition = pillowSelected.transform.position;
-                pillowSelected.transform.LeanMoveLocalY(1.5f, 1);
+                pillowSelected.transform.LeanMoveLocalY(0.6f, 1);
                 selected = true;
                 SoundManager.Instance.RandomizedSFX(pillowSelectClips);
             }
