@@ -36,9 +36,11 @@ public class SoundManager : MonoBehaviour
         if(levelName == "Menu")
         {
             ExitLevel();
+            musicAudioSource.loop = true;
         }
         else
         {
+            musicAudioSource.loop = false;
             int.TryParse(levelName, out int levelIndex);
             StartLevelMusic(levelIndex);
         }
