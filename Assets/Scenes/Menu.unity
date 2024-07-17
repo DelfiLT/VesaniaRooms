@@ -1329,7 +1329,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1789241576}
+      - m_Target: {fileID: 2028866086}
         m_TargetAssemblyTypeName: AudioSettings, Assembly-CSharp
         m_MethodName: ChangeSFXByButton
         m_Mode: 4
@@ -1578,7 +1578,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1789241576}
+      - m_Target: {fileID: 2028866086}
         m_TargetAssemblyTypeName: AudioSettings, Assembly-CSharp
         m_MethodName: ChangeSFXByButton
         m_Mode: 4
@@ -7807,7 +7807,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1789241576}
+      - m_Target: {fileID: 2028866086}
         m_TargetAssemblyTypeName: AudioSettings, Assembly-CSharp
         m_MethodName: ChangeMusicByButton
         m_Mode: 4
@@ -8480,7 +8480,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1789241576}
+      - m_Target: {fileID: 2028866086}
         m_TargetAssemblyTypeName: AudioSettings, Assembly-CSharp
         m_MethodName: ChangeMusicByButton
         m_Mode: 4
@@ -11084,7 +11084,6 @@ GameObject:
   - component: {fileID: 1789241573}
   - component: {fileID: 1789241575}
   - component: {fileID: 1789241574}
-  - component: {fileID: 1789241576}
   m_Layer: 5
   m_Name: SettingPanel
   m_TagString: Untagged
@@ -11154,21 +11153,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1789241572}
   m_CullTransparentMesh: 1
---- !u!114 &1789241576
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1789241572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705798d7be34718408cd5b9b1bb86340, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  masterMixer: {fileID: 24100000, guid: 86c439a9c780a9948b8fde5d658bc7d3, type: 2}
-  sfxSlider: {fileID: 1519359537}
-  musicSlider: {fileID: 2068602327}
 --- !u!1001 &1791831802
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12898,6 +12882,7 @@ GameObject:
   - component: {fileID: 2028866082}
   - component: {fileID: 2028866081}
   - component: {fileID: 2028866085}
+  - component: {fileID: 2028866086}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -13008,6 +12993,21 @@ MonoBehaviour:
   genericButtonSound: {fileID: 8300000, guid: e6f7c8cf997d7b34286c0b0afc83d320, type: 3}
   secondaryButtonSound: {fileID: 8300000, guid: 2b720e45b83bb5a4ca561829df63fec9,
     type: 3}
+--- !u!114 &2028866086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028866080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 705798d7be34718408cd5b9b1bb86340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterMixer: {fileID: 24100000, guid: 86c439a9c780a9948b8fde5d658bc7d3, type: 2}
+  sfxSlider: {fileID: 1519359537}
+  musicSlider: {fileID: 2068602327}
 --- !u!1 &2045312066
 GameObject:
   m_ObjectHideFlags: 0

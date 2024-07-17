@@ -15,7 +15,28 @@ public class AudioSettings : MonoBehaviour
 
     private void Start()
     {
-        musicSlider.onValueChanged.AddListener(delegate {MusicValueChanged(); });
+        SetByPlayerPrefs();
+        AsignSliders();
+    }
+
+    private void SetByPlayerPrefs()
+    {
+        if (PlayerPrefs.HasKey("PlayerMusicVolume"))
+        {
+            musicSlider.value = PlayerPrefs.GetFloat("PlayerMusicVolume");
+            MusicValueChanged();
+        }
+
+        if (PlayerPrefs.HasKey("PlayerSFXVolume"))
+        {
+            sfxSlider.value = PlayerPrefs.GetFloat("PlayerSFXVolume");
+            SFXValueChanged();
+        }
+    }
+
+    private void AsignSliders()
+    {
+        musicSlider.onValueChanged.AddListener(delegate { MusicValueChanged(); });
         sfxSlider.onValueChanged.AddListener(delegate { SFXValueChanged(); });
     }
 
@@ -29,6 +50,8 @@ public class AudioSettings : MonoBehaviour
         {
             masterMixer.SetFloat("MusicVolume", Mathf.Log10(musicSlider.value) * 20);
         }
+
+        PlayerPrefs.SetFloat("PlayerMusicVolume", musicSlider.value);
     }
 
     private void SFXValueChanged()
@@ -43,6 +66,8 @@ public class AudioSettings : MonoBehaviour
             masterMixer.SetFloat("AmbienceVolume", (Mathf.Log10(sfxSlider.value) * 20) -7.72f);
             masterMixer.SetFloat("SFXVolume", Mathf.Log10(sfxSlider.value) * 20);
         }
+
+        PlayerPrefs.SetFloat("PlayerSFXVolume", sfxSlider.value);
     }
 
     public void ChangeMusicByButton(float changeValue)
