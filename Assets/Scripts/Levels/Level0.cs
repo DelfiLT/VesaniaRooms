@@ -10,9 +10,15 @@ public class Level0 : MonoBehaviour
 
     [SerializeField] private GameObject[] pillows;
     [SerializeField] private LayerMask pillowMask;
+    [SerializeField] private LayerMask clueMask;
 
     [SerializeField] private List<AudioClip> pillowSelectClips = new List<AudioClip>();
     [SerializeField] private AudioClip pillowSlideClip;
+
+    [SerializeField] private Animator clockAnimator;
+    [SerializeField] private Animator cucuAnimator;
+    [SerializeField] private Animator noteAnimator;
+    [SerializeField] private GameObject noteParticle;
 
     private PuzzleManager puzzleManager;
     private InputManager inputManager;
@@ -21,47 +27,62 @@ public class Level0 : MonoBehaviour
     private GameObject pillowSelected;
     private Vector3 originalPosition;
 
+    private bool noteUnlocked;
+
     private void Awake()
     {
+        noteUnlocked = false;
         puzzleManager = GetComponent<PuzzleManager>();
         inputManager = InputManager.Instance;
     }
 
     private void OnTouch(Ray ray)
     {
-        if (selected)
+        if (Physics.Raycast(ray, out RaycastHit clockHit, 100, clueMask))
         {
-            if (Physics.Raycast(ray, out RaycastHit hit, 100, pillowMask))
+            noteUnlocked = true;
+            cucuAnimator.SetTrigger("animationCucu");
+            clockAnimator.SetTrigger("animationClock");
+            noteAnimator.SetTrigger("animationNote");
+            noteParticle.SetActive(true);
+        }
+
+        if (noteUnlocked)
+        {
+            if (selected)
             {
-                GameObject hitObject = hit.transform.gameObject;
-
-                if (hitObject != pillowSelected)
+                if (Physics.Raycast(ray, out RaycastHit hit, 100, pillowMask))
                 {
-                    Vector3 targetPosition = hitObject.transform.position;
+                    GameObject hitObject = hit.transform.gameObject;
 
-                    pillowSelected.transform.LeanMove(targetPosition, 1);
+                    if (hitObject != pillowSelected)
+                    {
+                        Vector3 targetPosition = hitObject.transform.position;
 
-                    hitObject.transform.LeanMove(originalPosition, 1);
+                        pillowSelected.transform.LeanMove(targetPosition, 1);
 
-                    SoundManager.Instance.PlaySFX(pillowSlideClip);
+                        hitObject.transform.LeanMove(originalPosition, 1);
 
-                    selected = false;
-                    pillowSelected = null;
+                        SoundManager.Instance.PlaySFX(pillowSlideClip);
 
-                    CheckPuzzleCompletion();
+                        selected = false;
+                        pillowSelected = null;
+
+                        CheckPuzzleCompletion();
+                    }
                 }
             }
-        }
-        else
-        {
-            if (Physics.Raycast(ray, out RaycastHit hit, 100, pillowMask))
+            else
             {
-                GameObject hitObject = hit.transform.gameObject;
-                pillowSelected = hitObject;
-                originalPosition = pillowSelected.transform.position;
-                pillowSelected.transform.LeanMoveLocalY(0.6f, 1);
-                selected = true;
-                SoundManager.Instance.RandomizedSFX(pillowSelectClips);
+                if (Physics.Raycast(ray, out RaycastHit hit, 100, pillowMask))
+                {
+                    GameObject hitObject = hit.transform.gameObject;
+                    pillowSelected = hitObject;
+                    originalPosition = pillowSelected.transform.position;
+                    pillowSelected.transform.LeanMoveLocalY(0.6f, 1);
+                    selected = true;
+                    SoundManager.Instance.RandomizedSFX(pillowSelectClips);
+                }
             }
         }
     }
