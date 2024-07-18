@@ -1697,17 +1697,17 @@ PrefabInstance:
     - target: {fileID: -8483229692389145983, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 81.86935
+      value: 81.7096
       objectReference: {fileID: 0}
     - target: {fileID: -8483229692389145983, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -77.37441
+      value: -68.3363
       objectReference: {fileID: 0}
     - target: {fileID: -8483229692389145983, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -120.7742
+      value: -111.64411
       objectReference: {fileID: 0}
     - target: {fileID: -5913172463669914825, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
@@ -1727,27 +1727,27 @@ PrefabInstance:
     - target: {fileID: -5234448375175369897, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -4.874538
+      value: 1.3091567
       objectReference: {fileID: 0}
     - target: {fileID: -5234448375175369897, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -4.222753
+      value: -6.3121085
       objectReference: {fileID: 0}
     - target: {fileID: -5234448375175369897, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -1.1516631
+      value: 59.530792
       objectReference: {fileID: 0}
     - target: {fileID: -2639638324218457063, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
+      value: 90.008545
       objectReference: {fileID: 0}
     - target: {fileID: -2639638324218457063, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 84.28506
+      value: -2.6525688
       objectReference: {fileID: 0}
     - target: {fileID: -2558626680944270011, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
@@ -1807,32 +1807,32 @@ PrefabInstance:
     - target: {fileID: 2854563699051640978, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.00000008080405
+      value: 0.0000025091122
       objectReference: {fileID: 0}
     - target: {fileID: 2854563699051640978, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.000005614776
+      value: -0.0000074753552
       objectReference: {fileID: 0}
     - target: {fileID: 2854563699051640978, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 172.94653
+      value: 16.313622
       objectReference: {fileID: 0}
     - target: {fileID: 2917289242402929547, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -88.16708
+      value: -81.30157
       objectReference: {fileID: 0}
     - target: {fileID: 2917289242402929547, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 47.506805
+      value: 167.84592
       objectReference: {fileID: 0}
     - target: {fileID: 2917289242402929547, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -83.02666
+      value: 156.3098
       objectReference: {fileID: 0}
     - target: {fileID: 8879528566716807029, guid: d975f9b0b5246564e8b5624d4d3050a9,
         type: 3}
@@ -11367,6 +11367,7 @@ GameObject:
   - component: {fileID: 1295228825}
   - component: {fileID: 1295228824}
   - component: {fileID: 1295228827}
+  - component: {fileID: 1295228828}
   m_Layer: 5
   m_Name: Notes
   m_TagString: Untagged
@@ -11533,6 +11534,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1295228828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295228822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d959bfb7821f5ee4b88fadb35a3b86eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipsToPlay:
+  - {fileID: 8300000, guid: ae44f134a7a0bf543928f4817a6a917f, type: 3}
 --- !u!1 &1320999911
 GameObject:
   m_ObjectHideFlags: 0
@@ -12113,6 +12128,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1823043488}
+    - targetCorrespondingSourceObject: {fileID: -1237893336017162492, guid: e76d87ba492a2d94485f86b8bad09a2c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1823043492}
     - targetCorrespondingSourceObject: {fileID: -5730374736541842816, guid: e76d87ba492a2d94485f86b8bad09a2c,
         type: 3}
       insertIndex: -1
@@ -23636,6 +23655,21 @@ MonoBehaviour:
   primaryMaterial: {fileID: -8693871230009537149, guid: c01b4cac438f8f541bdd2a4a829771cd,
     type: 3}
   secondaryMaterial: {fileID: 2100000, guid: 14ee2b4b7039e944baa318403b83715a, type: 2}
+--- !u!114 &1823043492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823043483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d959bfb7821f5ee4b88fadb35a3b86eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipsToPlay:
+  - {fileID: 8300000, guid: 837e9dde8b901314c94e44488b9f5670, type: 3}
+  - {fileID: 8300000, guid: 9ef21a5e5722bdf45aef86de83584950, type: 3}
 --- !u!1 &1827481068
 GameObject:
   m_ObjectHideFlags: 0
@@ -29925,6 +29959,7 @@ GameObject:
   - component: {fileID: 3469287836918895486}
   - component: {fileID: 1711813856347727796}
   - component: {fileID: 924063505}
+  - component: {fileID: 3469287836918895487}
   m_Layer: 0
   m_Name: Clock
   m_TagString: Untagged
@@ -30199,6 +30234,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148745438817}
   m_Mesh: {fileID: -5650011755972971809, guid: 1c55666911e0cfc428b268be1ad58e96, type: 3}
+--- !u!114 &3469287836918895487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148745438817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d959bfb7821f5ee4b88fadb35a3b86eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipsToPlay:
+  - {fileID: 8300000, guid: f9e7c0ba569eb3844affe216891fa354, type: 3}
+  - {fileID: 8300000, guid: 4df69fdb9dc9b484aa744de48a07a2e4, type: 3}
 --- !u!33 &3469287838646043758
 MeshFilter:
   m_ObjectHideFlags: 0
