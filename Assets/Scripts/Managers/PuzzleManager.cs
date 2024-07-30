@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,9 +23,14 @@ public class PuzzleManager : MonoBehaviour
 
     public void FinishLevel(int levelIndex)
     {
-        //TO DO: Make a coroutine to unlock the padlock with an animation and then open the victory panel
         //DataHandler.SaveData(levelIndex);
-        winPanel.SetActive(true);
+        StartCoroutine(waitToFinish());
         SoundManager.Instance.PlaySFX(winClip);
+    }
+
+    IEnumerator waitToFinish ()
+    {
+        yield return new WaitForSeconds(2);
+        winPanel.SetActive(true);
     }
 }

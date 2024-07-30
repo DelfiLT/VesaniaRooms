@@ -55,7 +55,12 @@ public class Level0 : MonoBehaviour
                 {
                     GameObject hitObject = hit.transform.gameObject;
 
-                    if (hitObject != pillowSelected)
+                    if(hitObject == pillowSelected)
+                    {
+                        pillowSelected.transform.LeanMoveLocalY(0.3f, 1);
+                        selected = false;
+                        pillowSelected = null;
+                    } else
                     {
                         Vector3 targetPosition = hitObject.transform.position;
 
