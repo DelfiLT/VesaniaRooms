@@ -8,6 +8,13 @@ public class InteractableObject : MonoBehaviour
     private bool canInteract = true;
     private bool moved = false;
 
+    [Header("Rotation")]
+    [SerializeField] private bool rotation;
+    [SerializeField, Range(-180f, 180f)] float angleX;
+    [SerializeField, Range(-180f, 180f)] float angleY;
+
+    [Header("Movement")]
+    [SerializeField] private bool movement;
     [SerializeField, Range(-0.1f, 0.1f)] float xPos;
     [SerializeField, Range(-0.1f, 0.1f)] float zPos;
 
@@ -17,19 +24,38 @@ public class InteractableObject : MonoBehaviour
         {
             StartCoroutine(Interact());
             SoundManager.Instance.RandomizedSFX(interactionClips);
-            if (moved)
+
+            if (movement)
             {
-                transform.LeanMoveLocal(new Vector3(transform.localPosition.x - xPos, transform.localPosition.y,
-                transform.localPosition.z + zPos), 1)
-                .setEaseInOutQuad();
-            } else
-            {
-                transform.LeanMoveLocal(new Vector3(transform.localPosition.x + xPos, transform.localPosition.y,
-                transform.localPosition.z - zPos), 1)
-                .setEaseInOutQuad();
+                if (moved)
+                {
+                    transform.LeanMoveLocal(new Vector3(transform.localPosition.x - xPos, transform.localPosition.y,
+                    transform.localPosition.z + zPos), 1)
+                    .setEaseInOutQuad();
+                }
+                else
+                {
+                    transform.LeanMoveLocal(new Vector3(transform.localPosition.x + xPos, transform.localPosition.y,
+                    transform.localPosition.z - zPos), 1)
+                    .setEaseInOutQuad();
+                }
+
+                moved = !moved;
             }
 
-            moved = !moved;
+            if (rotation)
+            {
+                if (moved)
+                {
+                    LeanTween.rotateLocal(this.gameObject, new Vector3(angleX, angleY, 0), 1).setEaseInOutQuad();
+                }
+                else
+                {
+                    LeanTween.rotateLocal(this.gameObject, new Vector3(0, 0, 0), 1).setEaseInOutQuad();
+                }
+
+                moved = !moved;
+            }
         }
     }
 

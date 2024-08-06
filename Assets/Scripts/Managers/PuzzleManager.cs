@@ -23,7 +23,7 @@ public class PuzzleManager : MonoBehaviour
 
     public void FinishLevel(int levelIndex)
     {
-        //DataHandler.SaveData(levelIndex);
+        DataHandler.SaveData(levelIndex);
         StartCoroutine(waitToFinish());
         SoundManager.Instance.PlaySFX(winClip);
     }

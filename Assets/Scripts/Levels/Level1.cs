@@ -24,11 +24,9 @@ public class Level1 : MonoBehaviour
     private PuzzleManager puzzleManager;
     private InputManager inputManager;
     private bool isMoving = false;
-    private bool bookUnlocked;
 
     private void Awake()
     {
-        bookUnlocked = false;
         inputManager = InputManager.Instance;
         puzzleManager = GetComponent<PuzzleManager>();
     }
@@ -54,15 +52,8 @@ public class Level1 : MonoBehaviour
 
     private void PuzzlePartOne(Ray ray)
     {
-        if (puzzleManager.puzzles[0])
+        if (puzzleManager.puzzles[0] || isMoving)
         {
-            Debug.Log("Puzzle Finalizado");
-            return;
-        }
-
-        if (isMoving)
-        {
-            Debug.Log("Otro objeto está en movimiento. Espera a que termine.");
             return;
         }
 
@@ -71,11 +62,7 @@ public class Level1 : MonoBehaviour
             Vector3 hitPosition = hit.transform.localPosition;
             int index = positions.FindIndex(pos => ArePositionsClose(pos, hitPosition));
 
-            if (index == -1)
-            {
-                Debug.LogWarning("No se encontró una posición cercana en la lista.");
-                return;
-            }
+            if (index == -1) return;
 
             adjacentPositions.Clear();
             List<int> offsets = new List<int> { -1, 1, -3, 3 };
@@ -95,11 +82,7 @@ public class Level1 : MonoBehaviour
                 {
                     Vector3 originalPosition = FindApproximatePosition(hit.transform.localPosition);
 
-                    if (originalPosition == Vector3.zero)
-                    {
-                        Debug.LogWarning("No se encontró una posición aproximada en el diccionario.");
-                        return;
-                    }
+                    if (originalPosition == Vector3.zero) return;
 
                     isMoving = true;
 
@@ -137,12 +120,9 @@ public class Level1 : MonoBehaviour
     {
         for (int i = 0; i < finalPositions.Count; i++)
         {
-            if (!ArePositionsClose(puzzleObjects[i].transform.localPosition, finalPositions[i].transform.localPosition))
-            {
-                Debug.Log("No Completado");
-                return;
-            }
+            if (!ArePositionsClose(puzzleObjects[i].transform.localPosition, finalPositions[i].transform.localPosition)) return;
         }
+
         puzzleManager.CompletePuzzle(0);
         strongboxDoor.SetTrigger("strongboxDoorAnimation");
         closetDoor.SetTrigger("closetDoorAnimation");
@@ -173,7 +153,6 @@ public class Level1 : MonoBehaviour
     {
         if (!puzzleManager.puzzles[0])
         {
-            Debug.Log("Parte uno no finalizada");
             return;
         }
     }
