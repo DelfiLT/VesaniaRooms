@@ -15,6 +15,8 @@ public class Level1 : MonoBehaviour
     [SerializeField] private LayerMask clueMask;
     [SerializeField] private Animator noteAnimator;
     [SerializeField] private GameObject noteParticle;
+    [SerializeField] private Animator closetDoor;
+    [SerializeField] private Animator strongboxDoor;
 
     private Dictionary<Vector3, bool> positionsStatus;
     private List<Vector3> adjacentPositions = new List<Vector3>();
@@ -142,7 +144,8 @@ public class Level1 : MonoBehaviour
             }
         }
         puzzleManager.CompletePuzzle(0);
-        //animación de abrir armario y caja fuerte
+        strongboxDoor.SetTrigger("strongboxDoorAnimation");
+        closetDoor.SetTrigger("closetDoorAnimation");
     }
 
     private void InitializePositions()
