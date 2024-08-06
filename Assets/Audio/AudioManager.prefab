@@ -441,6 +441,8 @@ MonoBehaviour:
   menuMusicClip: {fileID: 8300000, guid: 76c20d39caabb2c45a2a05d3d4a56bd0, type: 3}
   musicTracks:
   - {fileID: 11400000, guid: 89dfc3605790a464a973d58627977607, type: 2}
+  - {fileID: 11400000, guid: bcdc6871891361b438099bc17fea8504, type: 2}
   ambienceTracks:
+  - {fileID: 8300000, guid: b98fb3e8072947f40b6574cefa1708ff, type: 3}
   - {fileID: 8300000, guid: b98fb3e8072947f40b6574cefa1708ff, type: 3}
   playButtonClip: {fileID: 8300000, guid: 20451556a6468bb4eb2983cca3dff1f7, type: 3}
