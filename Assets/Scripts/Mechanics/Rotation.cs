@@ -4,14 +4,13 @@ using System.Collections.Generic;
 
 public class Rotation : MonoBehaviour
 {
-    private bool canInteract = true;
-
-    [SerializeField] private float angle;
     [SerializeField] private GameObject[] frontSideObjects;
     [SerializeField] private GameObject[] backSideObjects;
     [SerializeField] private List<AudioClip> swipeClips = new List<AudioClip>();
     
     private bool frontSide;
+    private float currentRotationY = 0f;
+    private bool canInteract = true;
 
     private void Awake()
     {
@@ -29,8 +28,8 @@ public class Rotation : MonoBehaviour
         if (canInteract)
         {
             StartCoroutine(Interact());
-            transform.LeanRotateY(transform.eulerAngles.y + angle, 1)
-                .setEaseInOutQuad();
+            currentRotationY += 180f;
+            LeanTween.rotateY(gameObject, currentRotationY, 1).setEaseInOutQuad();
         }
     }
 
@@ -39,8 +38,8 @@ public class Rotation : MonoBehaviour
         if (canInteract)
         {
             StartCoroutine(Interact());
-            transform.LeanRotateY(transform.eulerAngles.y - angle, 1)
-                .setEaseInOutQuad();
+            currentRotationY -= 180f;
+            LeanTween.rotateY(gameObject, currentRotationY, 1).setEaseInOutQuad();
         }
     }
 

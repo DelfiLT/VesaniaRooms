@@ -11,7 +11,7 @@ public class SwipeDetection : MonoBehaviour
     public static RotateLeft OnRotateLeft;
     #endregion
 
-    [Header("Configs")]
+    [Header("Settings")]
     [SerializeField]
     private float minDistance = .2f;
     [SerializeField]
