@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
+    [SerializeField] private float angle;
     [SerializeField] private GameObject[] frontSideObjects;
     [SerializeField] private GameObject[] backSideObjects;
     [SerializeField] private List<AudioClip> swipeClips = new List<AudioClip>();
@@ -52,7 +53,7 @@ public class Rotation : MonoBehaviour
         if (canInteract)
         {
             StartCoroutine(Interact());
-            transform.LeanRotateY(transform.eulerAngles.y + 180f, 1)
+            transform.LeanRotateY(transform.eulerAngles.y + angle, 1)
                 .setEaseInOutQuad();
         }
     }
@@ -62,7 +63,7 @@ public class Rotation : MonoBehaviour
         if (canInteract)
         {
             StartCoroutine(Interact());
-            transform.LeanRotateY(transform.eulerAngles.y - 180f, 1)
+            transform.LeanRotateY(transform.eulerAngles.y - angle, 1)
                 .setEaseInOutQuad();
         }
     }

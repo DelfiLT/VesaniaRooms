@@ -2110,6 +2110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1af017f8f284584d9bee695aaf7163d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  angle: 180
   frontSideObjects:
   - {fileID: 1072408338}
   - {fileID: 1438322846}

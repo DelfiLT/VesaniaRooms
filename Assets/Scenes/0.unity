@@ -12364,6 +12364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1af017f8f284584d9bee695aaf7163d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  angle: 180
   frontSideObjects:
   - {fileID: 1984425370}
   backSideObjects:
@@ -20259,7 +20260,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minFOV: 10
   maxFOV: 20
-  isPitching: 0
 --- !u!1 &2107888605
 GameObject:
   m_ObjectHideFlags: 0
