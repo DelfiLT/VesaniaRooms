@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class CollectClue : MonoBehaviour
 {
-    [SerializeField] private GameObject notesClue;
 
     [SerializeField] private LayerMask clueMask;
+    [SerializeField] private GameObject notesClue;
+    [SerializeField] private Animator noteAnimator;
+    [SerializeField] private GameObject noteParticle;
+
     private InputManager inputManager;
 
     private void Awake()
@@ -18,8 +21,11 @@ public class CollectClue : MonoBehaviour
     {
         if (Physics.Raycast(ray, out RaycastHit hit, 100, clueMask))
         {
-            Destroy(hit.transform.gameObject);
+
+            Instantiate(noteParticle, new Vector3(hit.transform.position.x, hit.transform.position.y, hit.transform.position.z ), Quaternion.identity);
             notesClue.SetActive(true);
+            noteAnimator.SetTrigger("animationNote");
+            Destroy(hit.transform.gameObject);
         }
     }
 

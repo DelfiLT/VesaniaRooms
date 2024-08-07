@@ -12,9 +12,6 @@ public class Level1 : MonoBehaviour
     [SerializeField, Range(0f, 8f)] int inactivePosition;
 
     [Header("Visual Settings")]
-    [SerializeField] private LayerMask clueMask;
-    [SerializeField] private Animator noteAnimator;
-    [SerializeField] private GameObject noteParticle;
     [SerializeField] private Animator closetDoor;
     [SerializeField] private Animator strongboxDoor;
 
@@ -38,12 +35,6 @@ public class Level1 : MonoBehaviour
 
     private void OnTouch(Ray ray)
     {
-        if (Physics.Raycast(ray, out RaycastHit clockHit, 100, clueMask))
-        {
-            noteAnimator.SetTrigger("animationNote");
-            noteParticle.SetActive(true);
-        }
-
         PuzzlePartOne(ray);
         PuzzlePartTwo(ray);
     }
@@ -86,7 +77,7 @@ public class Level1 : MonoBehaviour
 
                     isMoving = true;
 
-                    hit.transform.LeanMoveLocal(pos, 1).setOnComplete(() => {
+                    hit.transform.LeanMoveLocal(pos, 0.5f).setOnComplete(() => {
                         positionsStatus[originalPosition] = false;
                         positionsStatus[pos] = true;
                         isMoving = false;

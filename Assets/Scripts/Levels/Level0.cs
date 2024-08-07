@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Level0 : MonoBehaviour
 {
+    [Header("Level Settings")]
     [SerializeField] private Transform[] firstColorPositions;
     [SerializeField] private Transform[] secondColorPositions;
 
@@ -12,13 +13,13 @@ public class Level0 : MonoBehaviour
     [SerializeField] private LayerMask pillowMask;
     [SerializeField] private LayerMask clueMask;
 
+    [Header("Sound Settings")]
     [SerializeField] private List<AudioClip> pillowSelectClips = new List<AudioClip>();
     [SerializeField] private AudioClip pillowSlideClip;
 
+    [Header("Visual Settings")]
     [SerializeField] private Animator clockAnimator;
     [SerializeField] private Animator cucuAnimator;
-    [SerializeField] private Animator noteAnimator;
-    [SerializeField] private GameObject noteParticle;
 
     private PuzzleManager puzzleManager;
     private InputManager inputManager;
@@ -43,8 +44,6 @@ public class Level0 : MonoBehaviour
             noteUnlocked = true;
             cucuAnimator.SetTrigger("animationCucu");
             clockAnimator.SetTrigger("animationClock");
-            noteAnimator.SetTrigger("animationNote");
-            noteParticle.SetActive(true);
         }
 
         if (noteUnlocked)
