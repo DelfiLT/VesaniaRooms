@@ -12364,7 +12364,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1af017f8f284584d9bee695aaf7163d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angle: 180
   frontSideObjects:
   - {fileID: 1984425370}
   backSideObjects:
@@ -20181,6 +20180,7 @@ GameObject:
   - component: {fileID: 2095078508}
   - component: {fileID: 2095078507}
   - component: {fileID: 2095078509}
+  - component: {fileID: 2095078510}
   m_Layer: 0
   m_Name: LeanTouch
   m_TagString: Untagged
@@ -20245,6 +20245,21 @@ MonoBehaviour:
   movePivotKey: 308
   multiDragKey: 308
   fingerTexture: {fileID: 10912, guid: 0000000000000000f000000000000000, type: 0}
+--- !u!114 &2095078510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095078506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e3fcd414f4e774c8bd03f99e202f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minFOV: 10
+  maxFOV: 20
+  isPitching: 0
 --- !u!1 &2107888605
 GameObject:
   m_ObjectHideFlags: 0

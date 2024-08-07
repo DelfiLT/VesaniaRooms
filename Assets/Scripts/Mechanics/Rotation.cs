@@ -1,6 +1,7 @@
-using UnityEngine;
+using Lean.Touch;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Rotation : MonoBehaviour
 {
@@ -9,18 +10,41 @@ public class Rotation : MonoBehaviour
     [SerializeField] private List<AudioClip> swipeClips = new List<AudioClip>();
     
     private bool frontSide;
-    private float currentRotationY = 0f;
     private bool canInteract = true;
 
     private void Awake()
     {
         frontSide = true;
+        LeanTouch.Instance.SwipeThreshold = 10f;
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        SwipeDetection.OnRotateRight += RotateRoomRight;
-        SwipeDetection.OnRotateLeft += RotateRoomLeft;
+        LeanTouch.OnFingerSwipe += HandleSwipe;
+    }
+
+    private void OnDisable()
+    {
+        LeanTouch.OnFingerSwipe -= HandleSwipe;
+    }
+
+    private void HandleSwipe(LeanFinger finger)
+    {
+        if (canInteract)
+        {
+            Vector2 swipeDelta = finger.SwipeScreenDelta;
+            if (Mathf.Abs(swipeDelta.x) > Mathf.Abs(swipeDelta.y))
+            {
+                if (swipeDelta.x > 0)
+                {
+                    RotateRoomRight();
+                }
+                else
+                {
+                    RotateRoomLeft();
+                }
+            }
+        }
     }
 
     public void RotateRoomRight()
@@ -28,8 +52,8 @@ public class Rotation : MonoBehaviour
         if (canInteract)
         {
             StartCoroutine(Interact());
-            currentRotationY += 180f;
-            LeanTween.rotateY(gameObject, currentRotationY, 1).setEaseInOutQuad();
+            transform.LeanRotateY(transform.eulerAngles.y + 180f, 1)
+                .setEaseInOutQuad();
         }
     }
 
@@ -38,15 +62,15 @@ public class Rotation : MonoBehaviour
         if (canInteract)
         {
             StartCoroutine(Interact());
-            currentRotationY -= 180f;
-            LeanTween.rotateY(gameObject, currentRotationY, 1).setEaseInOutQuad();
+            transform.LeanRotateY(transform.eulerAngles.y - 180f, 1)
+                .setEaseInOutQuad();
         }
     }
 
     private void SwitchSide()
     {
         frontSide = !frontSide;
-            
+        
         if (frontSide)
         {
             foreach (GameObject frontSideObject in frontSideObjects)
@@ -75,12 +99,6 @@ public class Rotation : MonoBehaviour
                 backSideObject.SetActive(true);
             }
         }
-    }
-    
-    private void OnDestroy()
-    {
-        SwipeDetection.OnRotateRight -= RotateRoomRight;
-        SwipeDetection.OnRotateLeft -= RotateRoomLeft;
     }
 
     private IEnumerator Interact()
