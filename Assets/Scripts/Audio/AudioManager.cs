@@ -42,8 +42,8 @@ public class AudioManager : MonoBehaviour
         yield return StartCoroutine(FadeOut(audioSource));
         yield return new WaitForSeconds(0.5f);
         audioSource.clip = newClip;
-        audioSource.Play();
         StartCoroutine(FadeIn(audioSource));
+        audioSource.Play();
     }
 
     protected IEnumerator LevelMusic(int level)
