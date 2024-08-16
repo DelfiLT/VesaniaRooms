@@ -44,7 +44,7 @@ public class SoundManager : AudioManager
     public void StartLevelMusic(int level)
     {
         PlaySFX(playButtonClip);
-        if ( musicTracks.Count <= level || musicTracks[level] == null) { return; }
+        if ( musicTracks.Count <= level || !musicTracks[level]) return;
         StartCoroutine(LevelMusic(level));
         StartCoroutine(FadeOutIn(ambienceAudioSource, ambienceTracks[level]));
     }
@@ -55,11 +55,12 @@ public class SoundManager : AudioManager
     }
     public void RandomizedSFX(List<AudioClip> clipList)
     {
+        if (clipList.Count == 0) return;
         PlaySFX(clipList[Random.Range(0, clipList.Count)]);
     }
     public void PlaySFX(AudioClip clip)
     {
-        if(clip == null) { return; }
+        if(!clip) return;
         sfxAudioSource.PlayOneShot(clip);
     }
 
