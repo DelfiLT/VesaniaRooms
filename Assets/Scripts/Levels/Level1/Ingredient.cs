@@ -5,6 +5,7 @@ using UnityEngine;
 public class Ingredient : MonoBehaviour
 {
     [SerializeField] private Ingredients thisIngredient;
+    [SerializeField] private GameObject originalParent;
     private Vector3 ingredientPosition;
 
     private void Start()
@@ -12,6 +13,10 @@ public class Ingredient : MonoBehaviour
         ingredientPosition = transform.position;
     }
 
+    public GameObject Parent
+    {
+        get { return originalParent; } 
+    }
     public Ingredients ObjectIngredient
     {
         get { return thisIngredient; }

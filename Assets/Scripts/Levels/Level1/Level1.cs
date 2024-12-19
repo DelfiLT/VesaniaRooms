@@ -23,8 +23,9 @@ public class Level1 : MonoBehaviour
     private bool isMoving = false;
 
     int currentRecipe;
-    List<Ingredients> recipeIngredients;
-    List<Vector3> bowlPositions;
+    List<Ingredient> recipeIngredients = new List<Ingredient>();
+    [SerializeField] private List<Transform> bowlPositions;
+    [SerializeField] private GameObject generalParent;
 
     private void Awake()
     {
@@ -155,7 +156,10 @@ public class Level1 : MonoBehaviour
         {
             if(hit.collider.TryGetComponent(out Ingredient ingredientType))
             {
-                
+                recipeIngredients.Add(ingredientType);
+                hit.transform.SetParent(generalParent.transform);
+                hit.transform.position = bowlPositions[recipeIngredients.Count -1].position;
+                CheckRecipe();
             }
             else
             {
@@ -164,9 +168,8 @@ public class Level1 : MonoBehaviour
         }
     }
 
-    public void CheckRecipe (Ingredients ingredient)
+    public void CheckRecipe ()
     {
-        recipeIngredients.Add(ingredient);
 
         List<Ingredients> recipeOne = new List<Ingredients> { Ingredients.Potato, Ingredients.Cheese, Ingredients.FirstFlour };
         List<Ingredients> recipeTwo = new List<Ingredients>{ Ingredients.Tomato, Ingredients.Pasta, Ingredients.Meatballs };
@@ -176,23 +179,53 @@ public class Level1 : MonoBehaviour
             switch (currentRecipe)
             {
                 case 0:
-                    currentRecipe++;
+                    CompleteRecipe(recipeOne);
                     break;
                 case 1:
+                    CompleteRecipe(recipeTwo);
                     break;
                 case 2:
+                    CompleteRecipe(recipeThree);
                     break;
                 default:
                     break;
             }
         }
 
-        if(currentRecipe == 2)
+        if(currentRecipe == 3)
         {
             puzzleManager.CompletePuzzle(1);
+            puzzleManager.FinishLevel(1);
         }
     }
 
+    private void CompleteRecipe(List<Ingredients> recipe)
+    {
+        List<Ingredients> ingredientsInBowl = new List<Ingredients>();
+        foreach (Ingredient item in recipeIngredients)
+        {
+            ingredientsInBowl.Add(item.ObjectIngredient);
+        }
+
+        if (new HashSet<Ingredients>(recipe).SetEquals(ingredientsInBowl))
+        {
+            foreach (Ingredient item in recipeIngredients)
+            {
+                item.gameObject.SetActive(false);
+            }
+            recipeIngredients.Clear();
+            currentRecipe++;
+        }
+        else
+        {
+            foreach(Ingredient item in recipeIngredients)
+            {
+                item.transform.SetParent(item.Parent.transform);
+               item.transform.position = item.IngredientPosition;
+            }
+            recipeIngredients.Clear();
+        }
+    } 
     #endregion
     private void OnEnable()
     {
