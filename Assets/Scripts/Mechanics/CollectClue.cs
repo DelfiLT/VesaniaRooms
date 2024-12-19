@@ -21,7 +21,6 @@ public class CollectClue : MonoBehaviour
     {
         if (Physics.Raycast(ray, out RaycastHit hit, 100, clueMask))
         {
-
             Instantiate(noteParticle, new Vector3(hit.transform.position.x, hit.transform.position.y, hit.transform.position.z ), Quaternion.identity);
             notesClue.SetActive(true);
             noteAnimator.SetTrigger("animationNote");

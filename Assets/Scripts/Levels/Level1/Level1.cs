@@ -22,10 +22,14 @@ public class Level1 : MonoBehaviour
     private InputManager inputManager;
     private bool isMoving = false;
 
+    int currentRecipe;
+    List<Ingredients> recipeIngredients;
+
     private void Awake()
     {
         inputManager = InputManager.Instance;
         puzzleManager = GetComponent<PuzzleManager>();
+        currentRecipe = 0;
     }
 
     void Start()
@@ -145,6 +149,35 @@ public class Level1 : MonoBehaviour
         if (!puzzleManager.puzzles[0])
         {
             return;
+        }
+    }
+
+    public void CheckRecipe (Ingredients ingredient)
+    {
+        recipeIngredients.Add(ingredient);
+
+        List<Ingredients> recipeOne = new List<Ingredients> { Ingredients.Potato, Ingredients.Cheese, Ingredients.FirstFlour };
+        List<Ingredients> recipeTwo = new List<Ingredients>{ Ingredients.Tomato, Ingredients.Pasta, Ingredients.Meatballs };
+        List<Ingredients> recipeThree = new List<Ingredients> { Ingredients.Eggs, Ingredients.SecondFlour, Ingredients.Milk };
+
+        if (recipeIngredients.Count == 3) {         
+            switch (currentRecipe)
+            {
+                case 0:
+                    currentRecipe++;
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if(currentRecipe == 2)
+        {
+            puzzleManager.CompletePuzzle(1);
         }
     }
 
