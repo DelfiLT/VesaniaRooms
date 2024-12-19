@@ -156,10 +156,14 @@ public class Level1 : MonoBehaviour
         {
             if(hit.collider.TryGetComponent(out Ingredient ingredientType))
             {
-                recipeIngredients.Add(ingredientType);
-                hit.transform.SetParent(generalParent.transform);
-                hit.transform.position = bowlPositions[recipeIngredients.Count -1].position;
-                CheckRecipe();
+                if (!ingredientType.inRecipe)
+                {
+                    ingredientType.inRecipe = true;
+                    recipeIngredients.Add(ingredientType);
+                    hit.transform.SetParent(generalParent.transform);
+                    hit.transform.position = bowlPositions[recipeIngredients.Count - 1].position;
+                    CheckRecipe();
+                }
             }
             else
             {
@@ -222,6 +226,7 @@ public class Level1 : MonoBehaviour
             {
                 item.transform.SetParent(item.Parent.transform);
                item.transform.position = item.IngredientPosition;
+                item.inRecipe = false;
             }
             recipeIngredients.Clear();
         }
