@@ -24,6 +24,7 @@ public class Level1 : MonoBehaviour
 
     int currentRecipe;
     List<Ingredients> recipeIngredients;
+    List<Vector3> bowlPositions;
 
     private void Awake()
     {
@@ -149,6 +150,17 @@ public class Level1 : MonoBehaviour
         if (!puzzleManager.puzzles[0])
         {
             return;
+        }
+        if (Physics.Raycast(ray, out RaycastHit hit, 100, puzzleMask))
+        {
+            if(hit.collider.TryGetComponent(out Ingredient ingredientType))
+            {
+                
+            }
+            else
+            {
+                return;
+            }
         }
     }
 
